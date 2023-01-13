@@ -44,6 +44,7 @@ Utilizando Django Rest Framework, desarrollá los endpoints para el sistema de r
 8. OBTENER LISTA DE FACTURAS (GET): http://127.0.0.1:8000/api/facturas
 9. CREAR FACTURA (POST): http://127.0.0.1:8000/api/facturas, INGRESANDO ESTE JSON:
 ```
+# El formato correcto de fecha y hora a utilizar en los campos de dia_ingreso/dia_egreso: aaaa-mm-dd hh:mm:ss (ejemplo: 2023-01-18 10:53:00)
 {
     "id_habitacion": "COMPLETAR",
     "id_cliente": "COMPLETAR",
@@ -52,18 +53,17 @@ Utilizando Django Rest Framework, desarrollá los endpoints para el sistema de r
     "metodo_pago":"COMPLETAR",
     "monto_total": "COMPLETAR"
 }
-> El formato correcto de fecha y hora a utilizar en los campos de dia_ingreso/dia_egreso: aaaa-mm-dd hh:mm:ss (ejemplo: 2023-01-18 10:53:00)
 ```
 10. ELIMINAR UNA FACTURA DE UN CLIENTE (DELETE): http://127.0.0.1:8000/api/facturas/cliente/DNI (123123123 or 11223344)
 > aclaración: Borra la primer factura encontrada, es decir, la que tenga el menor id.
 11. OBTENER TODAS LAS RESERVAS (GET): http://127.0.0.1:8000/api/reserva/
 12. CREAR UNA RESERVA (POST): http://127.0.0.1:8000/api/reserva/, INGRESANDO ESTE JSON:
 ```
+# Para el campo estado estas son las opciones a utilizar: PEN/PAG/ELI. (PEN -> PENDIENTE, PAG -> PAGADO, ELI -> ELIMINADO)
 {
     "estado": "COMPLETAR",
     "id_factura":"COMPLETAR"
 }
-> Para el campo estado estas son las opciones a utilizar: PEN/PAG/ELI. (PEN -> PENDIENTE, PAG -> PAGADO, ELI -> ELIMINADO)
 ```
 13. OBTENER TODAS LAS RESERVAS CON UN ESTADO (GET): http://127.0.0.1:8000/api/reserva/estado/estado (ELI or PAG or PEN)
 14. OBTENER UNA RESERVA DE UN CLIENTE (GET): http://127.0.0.1:8000/api/reserva/cliente/DNI (123123123 or 11223344)
