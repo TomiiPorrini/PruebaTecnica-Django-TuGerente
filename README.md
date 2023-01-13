@@ -8,19 +8,22 @@ Utilizando Django Rest Framework, desarrollá los endpoints para el sistema de r
 
 - Las reservas pueden tener 3 estados: Pendiente, Pagado y Eliminado.
 - Los datos a almacenar para la reserva son: los detalles del cuarto reservado, los días de estadía, los datos de facturación e identificación del cliente, el monto pagado y el método de pago.
-- Proponé los endpoints a crearse para tratar de cubrir el flujo normal de operación de reserva y explicar por qué. 
-- El proyecto debe correrse en un contenedor de docker, se puede usar cualquier gestor de base de datos relacionales
-- Adjuntar también un archivo con ejemplos de consumo de la API para Postman
+- Proponer endpoints para tratar de cubrir el flujo normal de operación de reserva y su explicación. 
+- El proyecto debe correrse en un contenedor de docker, se puede usar cualquier gestor de base de datos relacionales.
+- Ejemplicar los consumos de la API para POSTMAN.
 
 ## Cuenta de admin:
 * usuario: user
 * contraseña: user
+
 ## ENDPOINTS PROPUESTOS:
-> Cada endpoint tiene su link para realizar su consumo en postman. Por defecto, los va a llevar al login de admin.
+> Cada punto de esta lista sigue la siguiente estructura: TITULO ENPOINT (METODO POSTMAN): URL DE CONSUMO
+
 1. LISTAR CLIENTES (GET): http://127.0.0.1:8000/api/cliente/
 2. OBTENER INFO DE UN CLIENTE (GET): http://127.0.0.1:8000/api/cliente/11223344
 3. CREAR CLIENTE (POST): http://127.0.0.1:8000/api/cliente/, INGRESANDO ESTE JSON:
-```{
+```
+{
     "nombre": "COMPLETAR",
     "apellido": "COMPLETAR",
     "dni": "COMPLETAR",
@@ -30,7 +33,8 @@ Utilizando Django Rest Framework, desarrollá los endpoints para el sistema de r
 4. OBTENER LISTA DE HABITACIONES (GET): http://127.0.0.1:8000/api/habitacion/
 5. OBTERNER INFO DE UNA HABITACION (GET): http://127.0.0.1:8000/api/habitacion/NumHabitacion (2 or 3)
 6. CREAR HABITACION (POST): http://127.0.0.1:8000/api/habitacion/, INGRESANDO ESTE JSON:
-```{
+```
+{
     "numero": "COMPLETAR",
     "descripcion": "COMPLETAR",
     "tarifa": "COMPLETAR",
@@ -43,11 +47,12 @@ Utilizando Django Rest Framework, desarrollá los endpoints para el sistema de r
 {
     "id_habitacion": "COMPLETAR",
     "id_cliente": "COMPLETAR",
-    "dia_ingreso":"2023-01-18 10:53:00", (Dejo esta fecha para que sea una guia del formato.)
+    "dia_ingreso":"COMPLETAR",
     "dia_egreso":"COMPLETAR",
     "metodo_pago":"COMPLETAR",
     "monto_total": "COMPLETAR"
 }
+> El formato correcto de fecha y hora a utilizar en los campos de dia_ingreso/dia_egreso: aaaa-mm-dd hh:mm:ss (ejemplo: 2023-01-18 10:53:00)
 ```
 10. ELIMINAR UNA FACTURA DE UN CLIENTE (DELETE): http://127.0.0.1:8000/api/facturas/cliente/DNI (123123123 or 11223344)
 > aclaración: Borra la primer factura encontrada, es decir, la que tenga el menor id.
@@ -55,13 +60,14 @@ Utilizando Django Rest Framework, desarrollá los endpoints para el sistema de r
 12. CREAR UNA RESERVA (POST): http://127.0.0.1:8000/api/reserva/, INGRESANDO ESTE JSON:
 ```
 {
-    "estado": "COMPLETAR CON 3 LETRAS.",(PEN -> PENDIENTE, PAG -> PAGADO, ELI -> ELIMINADO)
+    "estado": "COMPLETAR",
     "id_factura":"COMPLETAR"
 }
+> Para el campo estado estas son las opciones a utilizar: PEN/PAG/ELI. (PEN -> PENDIENTE, PAG -> PAGADO, ELI -> ELIMINADO)
 ```
 13. OBTENER TODAS LAS RESERVAS CON UN ESTADO (GET): http://127.0.0.1:8000/api/reserva/estado/estado (ELI or PAG or PEN)
 14. OBTENER UNA RESERVA DE UN CLIENTE (GET): http://127.0.0.1:8000/api/reserva/cliente/DNI (123123123 or 11223344)
-> No hace falta, eliminar una reserva, ya que esté utilizado con el parametro on_delete:CASCADE, por lo que si se borra una factura que hace referencia a alguna reserva, esta se borraria automaticamente.
+> No hace falta eliminar una reserva, ya que esté utilizado con el parametro on_delete:CASCADE, por lo que si se borra una factura que hace referencia a alguna reserva, esta se borraria automaticamente.
 
 
 
